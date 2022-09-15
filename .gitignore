@@ -5,7 +5,7 @@ target/
 **/src/test/**/target/
 .DS_Store
 
-/application.yml
+.mvn/
 
 ### STS ###
 .apt_generated
@@ -34,3 +34,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Astra ###
+secure-connect.zip
