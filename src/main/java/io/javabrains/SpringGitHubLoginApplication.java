@@ -15,6 +15,7 @@ public class SpringGitHubLoginApplication {
 		SpringApplication.run(SpringGitHubLoginApplication.class, args);
 	}
 
+	//Demande que à /user, on affiche le nom de l'utilisateur
 	@RequestMapping("/user")
 	public String user(@AuthenticationPrincipal OAuth2User principal) {
 		System.out.println(principal);
