@@ -15,8 +15,5 @@ import java.util.List;
 // of fetching data
 @Repository
 public interface FolderRepository extends CassandraRepository<Folder,String> {
-
     List<Folder> findAllById(String id);
-
-
 }

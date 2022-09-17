@@ -2,6 +2,7 @@ package io.javabrains.inbox.controllers;
 
 import io.javabrains.inbox.inbox.folder.Folder;
 import io.javabrains.inbox.inbox.folder.FolderRepository;
+import io.javabrains.inbox.inbox.folder.FolderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -17,20 +18,24 @@ import java.util.List;
 public class InboxController {
 
     @Autowired private FolderRepository folderRepository;
+    @Autowired private FolderService folderService;
+
     @GetMapping(value =  "/")
     public String homePage(@AuthenticationPrincipal OAuth2User principal, Model model) {
         //Check if the user  is looged
         if(principal ==  null || !StringUtils.hasText(principal.getAttribute("login"))) {
             return "index";
         }
+
         //get the id
         String userId = principal.getAttribute("login");
         //get the correct folder by user
         List<Folder> userFolders = folderRepository.findAllById(userId);
-
-
         model.addAttribute("userFolders",userFolders);
-        System.out.println(userId);
+
+        List<Folder> defaultFolders = folderService.fetchDefaultFolders(userId);
+        model.addAttribute("defaultFolders",defaultFolders);
+
         return "inbox-page";
     }
 }

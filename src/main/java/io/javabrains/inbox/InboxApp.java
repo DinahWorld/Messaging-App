@@ -25,7 +25,7 @@ public class InboxApp {
 	// Connect to Astra with creating DataStaxAstraProperties
 	@Bean
 	public CqlSessionBuilderCustomizer sessionBuilderCustomizer(DataStaxAstraProperties astraProperties){
-		Path bundle = astraProperties.getSecureConnectBundle().toPath();
+			Path bundle = astraProperties.getSecureConnectBundle().toPath();
 		return builder -> builder.withCloudSecureConnectBundle(bundle);
 	}
 	@PostConstruct
