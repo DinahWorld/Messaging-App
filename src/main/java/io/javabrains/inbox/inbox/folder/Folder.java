@@ -16,6 +16,9 @@ public class Folder {
     @PrimaryKeyColumn(name = "label", ordinal = 1, type = PrimaryKeyType.CLUSTERED)
     private String label;
 
+    @CassandraType(type = CassandraType.Name.TEXT)
+    private String color;
+
     public Folder() {}
 
     public Folder(String userId, String label, String color) {
@@ -23,9 +26,6 @@ public class Folder {
         this.label = label;
         this.color = color;
     }
-
-    @CassandraType(type = CassandraType.Name.TEXT)
-    private String color;
 
     public String getId() {
         return id;
